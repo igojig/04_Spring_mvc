@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>Открытие дебетовой карты</h3>
+    <div th:if="${cartFormModel.createBill}">
+        <form th:object="${cartFormModel}" th:action="@{/carts/openDebit}" method="post">
+            <input type="hidden" th:field="*{createBill}">
+
+            <label for="balance">Введите сумму пополнения</label>
+            <input id="balance" type="number" th:field="*{balance}">
+            <p th:if="${#fields.hasErrors('balance')}" th:errors="*{balance}" style="color: red;"></p>
+            <br>
+            <label for="pay">Выберите платежную систему</label>
+            <select id="pay" th:field="*{paymentSystem}">
+                <option th:each="system : ${T(com.bellintegrator.spring_mvc_homework.entities.Cart.PaymentSystem).values()}"
+                        th:value="${system}"
+                        th:text="${system}">
+                </option>
+            </select>
+            <p th:if="${#fields.hasErrors('paymentSystem')}" th:errors="*{paymentSystem}" style="color: red;"></p>
+            <br>
+            <button type="submit">Открыть</button>
+        </form>
+    </div>
+
+    <div th:unless="${cartFormModel.createBill}">
+        <form th:object="${cartFormModel}" th:action="@{/carts/openDebit}" method="post">
+            <input type="hidden" th:field="*{createBill}">
+            <input type="hidden" th:field="*{balance}">
+            <input type="hidden" th:field="*{billId}">
+
+            <p th:text="${'Карта создается для счета №' + cartFormModel.billId + ', баланс: ' + cartFormModel.balance}"></p>
+
+            <label for="pay1">Выберите платежную систему</label>
+            <select id="pay1" th:field="*{paymentSystem}">
+                <option th:each="system : ${T(com.bellintegrator.spring_mvc_homework.entities.Cart.PaymentSystem).values()}"
+                        th:value="${system}"
+                        th:text="${system}">
+                </option>
+            </select>
+            <br>
+            <button type="submit">Открыть</button>
+        </form>
+    </div>
+    <br>
+
+    <a th:href="@{/users/userAccount}">В личный кабинет</a>
+    <br>
+    <a th:href="@{/bills}">К счетам</a>
+
+</body>
+</html>

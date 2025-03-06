@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <h3>Что-то пошло не так...</h3>
+    <p th:text="${cause}"></p>
+    <p th:text="${error}"></p>
+    <a th:href="@{/users/userAccount}">В личный кабинет</a>
+</body>
+</html>

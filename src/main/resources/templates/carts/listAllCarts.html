@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" >
+    <title>Карты пользователя</title>
+</head>
+<body>
+    <h3>Активные карты</h3>
+    <p th:if="${carts.get(T(com.bellintegrator.spring_mvc_homework.entities.Cart.CartStatus).ACTIVE)==null}" th:text="${'Активных карт нет'}"></p>
+    <div th:if="${carts.get(T(com.bellintegrator.spring_mvc_homework.entities.Cart.CartStatus).ACTIVE)}">
+        <table border="1">
+            <th>Номер</th>
+            <th>Баланс</th>
+            <th>Статус</th>
+            <th>Платежная система</th>
+            <th>Тип</th>
+            <th>Действие</th>
+            <tbody>
+            <tr th:each="cart: ${carts.get(T(com.bellintegrator.spring_mvc_homework.entities.Cart.CartStatus).ACTIVE) }">
+
+                <td th:text="${cart.id}"></td>
+                <td th:text="${#numbers.formatInteger(cart.balance,3,'WHITESPACE')}"></td>
+                <td th:text="${cart.cartStatus.name}"></td>
+                <td th:text="${cart.paymentSystem}"></td>
+                <td th:text="${cart.cartType.name}"></td>
+                <td>
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <form th:action="@{/carts/block}" method="post">
+                                    <input type="hidden" name="cartId" th:value="${cart.id}">
+                                    <button type="submit">Заблокировать</button>
+                                </form>
+                            </td>
+                            <td>
+                                <form th:action="@{/carts/close}" method="post">
+                                    <input type="hidden" name="cartId" th:value="${cart.id}">
+                                    <button type="submit">Закрыть</button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Заблокированные карты</h3>
+    <p th:if="${carts.get(T(com.bellintegrator.spring_mvc_homework.entities.Cart.CartStatus).BLOCKED)==null}" th:text="${'Заблокированных карт нет'}"></p>
+    <div th:if="${carts.get(T(com.bellintegrator.spring_mvc_homework.entities.Cart.CartStatus).BLOCKED)}">
+        <table border="1">
+            <th>Номер</th>
+            <th>Баланс</th>
+            <th>Статус</th>
+            <th>Платежная система</th>
+            <th>Тип</th>
+            <tbody>
+            <tr th:each="cart: ${carts.get(T(com.bellintegrator.spring_mvc_homework.entities.Cart.CartStatus).BLOCKED) }">
+                <td th:text="${cart.id}"></td>
+                <td th:text="${#numbers.formatInteger(cart.balance,3,'WHITESPACE')}"></td>
+                <td th:text="${cart.cartStatus.name}"></td>
+                <td th:text="${cart.paymentSystem}"></td>
+                <td th:text="${cart.cartType.name}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Закрытые карты</h3>
+    <p th:if="${carts.get(T(com.bellintegrator.spring_mvc_homework.entities.Cart.CartStatus).CLOSED)==null}" th:text="${'Закрытых карт нет'}"></p>
+    <div th:if="${carts.get(T(com.bellintegrator.spring_mvc_homework.entities.Cart.CartStatus).CLOSED)}">
+        <table border="1">
+            <th>Номер</th>
+            <th>Баланс</th>
+            <th>Статус</th>
+            <th>Платежная система</th>
+            <th>Тип</th>
+            <tbody>
+            <tr th:each="cart: ${carts.get(T(com.bellintegrator.spring_mvc_homework.entities.Cart.CartStatus).CLOSED) }">
+                <td th:text="${cart.id}"></td>
+                <td th:text="${#numbers.formatInteger(cart.balance,3,'WHITESPACE')}"></td>
+                <td th:text="${cart.cartStatus.name}"></td>
+                <td th:text="${cart.paymentSystem}"></td>
+                <td th:text="${cart.cartType.name}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+<br>
+
+<a th:href="@{/users/userAccount}">В личный кабинет</a>
+
+</body>
+</html>

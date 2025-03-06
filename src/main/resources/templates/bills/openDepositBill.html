@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Депозит</title>
+</head>
+<body>
+    <div>
+        <p>Открыть депозитный счет</p>
+        <form th:object="${bill}" th:action="@{/bills/deposit}" method="post">
+            <label for="balance">Сумма</label>
+            <input id="balance" type="number" th:field="*{balance}"/>
+            <br>
+            <span th:if="${#fields.hasErrors('balance')}" th:errors="*{balance}" style="color: red;">Full name error</span>
+            <br>
+            <br>
+            <button type="submit">Открыть</button>
+        </form>
+    </div>
+
+    <br>
+
+    <a th:href="@{/users/userAccount}">В личный кабинет</a>
+    <br>
+    <a th:href="@{/bills}">К счетам</a>
+
+</body>
+</html>

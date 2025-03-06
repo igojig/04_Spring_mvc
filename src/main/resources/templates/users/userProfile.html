@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <ul th:object="${user}">
+        <li>Имя: <span th:text="*{firstName}"></span></li>
+        <li>Фамилия: <span th:text="*{lastName}"></span></li>
+        <li>Дата рождения: <span th:text="${#temporals.format(user.dateOfBirth, 'dd-MM-yyyy')}"></span></li>
+        <li>Паспорт: <span th:text="*{passport}"></span></li>
+        <li>Email: <span th:text="*{email}"></span></li>
+    </ul>
+    <br>
+
+    <div>
+        <a th:href="@{/users/userAccount}">В личный кабинет</a>
+    </div>
+
+    <br>
+
+    <div>
+        <form th:action="@{/logout}" method="post">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+
+
+</body>
+</html>

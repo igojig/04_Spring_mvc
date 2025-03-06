@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${'Личный кабинет пользователя ' + firstName + ' ' + lastName}"></title>
+</head>
+<body>
+<h3 th:text="${'Личный кабинет пользователя ' + firstName + ' ' + lastName}"></h3>
+
+<table>
+    <caption>Действия</caption>
+    <tr>
+        <td>
+            <form th:action="@{/bills/openDeposit}" method="get">
+                <button type="submit">Открыть депозитный счет</button>
+            </form>
+        </td>
+        <td>
+            <form th:action="@{/carts/openDebit}" method="get">
+                <button type="submit">Открыть дебетовую карту</button>
+            </form>
+        </td>
+        <td>
+            <form th:action="@{/carts/openCredit}" method="get">
+                <button type="submit">Открыть кредитную карту</button>
+            </form>
+        </td>
+    </tr>
+</table>
+
+<br>
+
+<table>
+    <caption>Финансы</caption>
+    <tr>
+        <td>
+            <form th:action="@{/bills}" method="get">
+                <button type="submit">Посмотреть счета</button>
+            </form>
+        </td>
+        <td>
+            <form th:action="@{/carts}" method="get">
+                <button type="submit">Посмотреть карты</button>
+            </form>
+        </td>
+
+    </tr>
+</table>
+<br>
+<a th:href="@{/users/userProfile}">В профиль</a>
+
+</body>
+</html>

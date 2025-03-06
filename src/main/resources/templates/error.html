@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Error</title>
+</head>
+<body>
+<h1>Что то пошло не так....</h1>
+<p th:text="'Error Code: ' + ${status}"></p>
+<p th:text="'Message: ' + ${error}"></p>
+<p th:text="'Exception: ' + ${exception}"></p>
+<p th:text="'Path: ' + ${path}"></p>
+<a th:href="@{/users/userProfile}">Вернуться в профиль</a>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Внести на депозит</title>
+</head>
+<body>
+    <p>Внесение на депозит</p>
+    <form th:object="${model}" th:action="@{/bills/putToDeposit}" method="post">
+        <input type="hidden" th:field="*{Id}">
+        <label for="sum">Введите сумму пополения</label>
+        <input id="sum" type="number" th:field="*{amount}">
+        <p th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}" style="color: red;"></p>
+        <br>
+        <button type="submit">Внести</button>
+    </form>
+    <br>
+    <a href="/bills">К счетам</a>
+
+</body>
+</html>

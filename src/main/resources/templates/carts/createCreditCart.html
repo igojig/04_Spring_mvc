@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Создание кредитной карты</title>
+</head>
+<body>
+    <h3>Открытие кредитной карты</h3>
+    <form th:object="${cartFormModel}" th:action="@{/carts/openCredit}" method="post">
+
+        <label for="balance">Введите лимит</label>
+        <input id="balance" type="number" th:field="*{balance}">
+        <p th:if="${#fields.hasErrors('balance')}" th:errors="*{balance}" style="color: red;"></p>
+        <br>
+        <label for="pay">Выберите платежную систему</label>
+        <select id="pay" th:field="*{paymentSystem}">
+            <option th:each="system : ${T(com.bellintegrator.spring_mvc_homework.entities.Cart.PaymentSystem).values()}"
+                    th:value="${system}"
+                    th:text="${system}">
+            </option>
+        </select>
+        <p th:if="${#fields.hasErrors('paymentSystem')}" th:errors="*{paymentSystem}" style="color: red;"></p>
+        <br>
+        <button type="submit">Открыть</button>
+    </form>
+
+    <br>
+    <a th:href="@{/users/userAccount}">В личный кабинет</a>
+    <br>
+    <a th:href="@{/bills}">К счетам</a>
+</body>
+</html>
