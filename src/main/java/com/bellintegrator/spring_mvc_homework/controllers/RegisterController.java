@@ -33,7 +33,7 @@ public class RegisterController {
     public String register(Model model) {
         UserDto userDto = new UserDto();
         model.addAttribute("userDto", userDto);
-        return "/users/register";
+        return "users/register";
     }
 
     @PostMapping
@@ -41,13 +41,13 @@ public class RegisterController {
         log.info("UserDto: {}", userDto);
         if (bindingResult.hasErrors()) {
             log.warn("Ошибки в модели при регистрации пользователя");
-            return "/users/register";
+            return "users/register";
         }
 
         if (userService.existsUserByEmail(userDto.getEmail())) {
             log.warn("Ошибка при регистрации: email {} уже существует", userDto.getEmail());
             bindingResult.rejectValue("email", "email exists", "пользователь с таким e-mail уже существует");
-            return "/users/register";
+            return "users/register";
         }
 
         User user = userMapper.toEntity(userDto);

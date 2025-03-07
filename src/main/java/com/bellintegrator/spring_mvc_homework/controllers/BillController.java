@@ -46,7 +46,7 @@ public class BillController {
         log.info("Передаем View для открытия депозитного счета");
         BillDto billDto = new BillDto();
         model.addAttribute("bill", billDto);
-        return "/bills/openDepositBill";
+        return "bills/openDepositBill";
     }
 
     @PostMapping("/deposit")
@@ -54,7 +54,7 @@ public class BillController {
         log.info("Получили данные из View для открытия депозитнго счета");
         if (bindingResult.hasErrors()) {
             log.info("Ошибки в модели при создании депозитного счета");
-            return "/bills/openDepositBill";
+            return "bills/openDepositBill";
         }
 
         Bill bill=billMapper.toEntityWithDepositTypeAndAuthUser(billDto);
@@ -69,7 +69,7 @@ public class BillController {
         BillFormModel billFormModel = new BillFormModel();
         billFormModel.setId(billId);
         model.addAttribute("model", billFormModel);
-        return "/bills/putToDeposit";
+        return "bills/putToDeposit";
     }
 
     @PostMapping("/putToDeposit")
@@ -77,7 +77,7 @@ public class BillController {
         log.info("Получили данные из View для пополения депозитного счета");
         if (bindingResult.hasErrors()) {
             log.info("Ошибки в модели при пополнении депозитного счета");
-            return "/bills/putToDeposit";
+            return "bills/putToDeposit";
         }
 
         Bill bill=billService.addToBalance(model.getId(), model.getAmount());
@@ -90,7 +90,7 @@ public class BillController {
         BillFormModel billFormModel = new BillFormModel();
         billFormModel.setId(billId);
         model.addAttribute("model", billFormModel);
-        return "/bills/getFromDeposit";
+        return "bills/getFromDeposit";
     }
 
     @PostMapping("/getFromDeposit")
@@ -98,7 +98,7 @@ public class BillController {
         log.info("Получили данные из View для снятия с депозитного счета");
         if (bindingResult.hasErrors()) {
             log.info("Ошибки в модели при снятии с депозитного счета");
-            return "/bills/getFromDeposit";
+            return "bills/getFromDeposit";
         }
 
         billService.subtractFromBalance(model.getId(), model.getAmount());

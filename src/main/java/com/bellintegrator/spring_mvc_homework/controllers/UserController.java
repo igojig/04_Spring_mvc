@@ -22,7 +22,7 @@ public class UserController {
     public String userInfo(Model model) {
         User authUser = userService.getAuthUser();
         model.addAttribute("user", authUser);
-        return "/users/userProfile";
+        return "users/userProfile";
     }
 
     // личный кабинет
@@ -31,6 +31,6 @@ public class UserController {
         User authUser = userService.getAuthUser();
         model.addAttribute("firstName", authUser.getFirstName());
         model.addAttribute("lastName", authUser.getLastName());
-        return "/users/userAccount";
+        return "users/userAccount";
     }
 }

@@ -46,7 +46,7 @@ public class CartController {
                 .collect(Collectors.groupingBy(CartDto::getCartStatus));
 
         model.addAttribute("carts", cartMap);
-        return "/carts/listAllCarts";
+        return "carts/listAllCarts";
     }
 
     @GetMapping("/openDebit")
@@ -64,7 +64,7 @@ public class CartController {
         }
 
         model.addAttribute("cartFormModel", cartFormModel);
-        return "/carts/createDebitCart";
+        return "carts/createDebitCart";
     }
 
     @PostMapping("/openDebit")
@@ -72,7 +72,7 @@ public class CartController {
         log.info("Получили данные из View для открытия дебитовой карты");
         if (bindingResult.hasErrors()) {
             log.warn("Ошибки в модели при создании дебетовой карты");
-            return "/carts/createDebitCart";
+            return "carts/createDebitCart";
         }
 
         if (cartFormModel.isCreateBill()) {
@@ -91,7 +91,7 @@ public class CartController {
         log.info("Передаем View для открытия кредитной карты");
         CartFormModel cartFormModel = new CartFormModel();
         model.addAttribute("cartFormModel", cartFormModel);
-        return "/carts/createCreditCart";
+        return "carts/createCreditCart";
     }
 
     @PostMapping("/openCredit")
@@ -99,7 +99,7 @@ public class CartController {
         log.info("Получили данные из View для открытия кредитной карты");
         if (bindingResult.hasErrors()) {
             log.info("Ошибка в модели при создании кредитной карты");
-            return "/carts/createCreditCart";
+            return "carts/createCreditCart";
         }
 
         User authUser = userService.getAuthUser();
