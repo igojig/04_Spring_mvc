@@ -1,0 +1,26 @@
+version: "3.9"
+name: mvc_postgres
+services:
+  postgres:
+    container_name: mvc_postgres
+    image: postgres:12.5
+    restart: always
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+#    networks:
+#      - mvc-network
+    ports:
+      - "6789:5432"
+
+
+volumes:
+  pg-data:
+
+#networks:
+#  mvc-network:
+#    driver: bridge
