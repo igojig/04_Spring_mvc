@@ -1,8 +1,17 @@
 
-### Start app
-`docker compose up -d`
+### Запуск
+1. Все в докере:
 
-`http://localhost:80`
+    - `docker compose up -d`
+    - `http://localhost:80`
+
+2. Postgres в докере, старт через IDEA
+
+    - `docker compose  -f .\postgres-compose.yaml up -d`
+    - `запустить через IDEA приложение`
+    - `http://localhost:8080`
+
+
 
 ### Predefined credentials
 
