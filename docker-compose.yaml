@@ -1,4 +1,5 @@
 version: "3.9"
+name: mvc
 services:
   backend:
     container_name: backend_mvc_thymeleaf
