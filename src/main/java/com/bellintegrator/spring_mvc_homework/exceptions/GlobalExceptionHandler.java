@@ -19,7 +19,7 @@ public class GlobalExceptionHandler {
         log.info("Перехватили ошибку: {}", ex.getMessage());
         model.addAttribute("cause", "Ошибка при снятии денег");
         model.addAttribute("error", ex.getMessage());
-        return "/errors/ProgramError";
+        return "errors/ProgramError";
     }
 
     @ExceptionHandler({SQLException.class, DataAccessException.class})
