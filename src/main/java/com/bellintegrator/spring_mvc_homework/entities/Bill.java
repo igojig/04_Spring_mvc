@@ -7,8 +7,8 @@ import lombok.Data;
 @Data
 @Table(name = "bills")
 public class Bill {
-    // есть ссылка в listAllBills.html -  com.bellintegrator.spring_mvc_homework.entities.Bill.Type
-    public enum Type{
+    // есть ссылка в listAllBills.html -  com.bellintegrator.spring_mvc_homework.entities.Bill.BillType
+    public enum BillType {
         DEPOSIT,
         DEBIT_CART,
         CREDIT_CART
@@ -24,8 +24,8 @@ public class Bill {
     private User user;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "type", nullable = false)
-    private Type type;
+    @Column(name = "bill_type", nullable = false)
+    private BillType billType;
 
     @Column(name = "balance", nullable = false)
     private Long balance;

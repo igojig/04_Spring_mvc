@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+
+    <changeSet id="create_table_bills" author="Zhigachev">
+        <createTable tableName="bills">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints foreignKeyName="fk_bills_user_id_users_id" references="users(id)" nullable="false"/>
+            </column>
+            <column name="bill_type" type="varchar(20)">
+                <constraints nullable="false" />
+            </column>
+            <column name="balance" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add_constraint_bill_type" author="Zhigachev">
+        <sql>
+            ALTER TABLE bills ADD CONSTRAINT bill_type_check CHECK(bill_type::text = ANY (ARRAY['DEPOSIT'::character varying, 'DEBIT_CART'::character varying, 'CREDIT_CART'::character varying]::text[]))
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

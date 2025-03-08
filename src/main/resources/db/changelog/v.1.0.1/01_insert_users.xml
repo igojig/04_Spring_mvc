@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+        <changeSet id="add_users" author="Zhigachev">
+            <insert tableName="users">
+                <column name="first_name" value="Иван"/>
+                <column name="last_name" value="Петров"/>
+                <column name="password" value="$2a$12$kU7IZYuQMPkClQ9/3bpWoeTN362n7MEjT.MmBNWxeYgmJEqOr7QSe" remarks="password is 1"/>
+                <column name="date_of_birth" value="1966-02-23"/>
+                <column name="passport" value="1111 123456"/>
+                <column name="email" value="ivan@mail.ru"/>
+            </insert>
+            <insert tableName="users">
+                <column name="first_name" value="Олег"/>
+                <column name="last_name" value="Сидоров"/>
+                <column name="password" value="$2a$12$Y/vtSHOfsZoynFmOPBmgG.d7UCAJxyK/h.uPfgRiagf5UMmsg2Vdi" remarks="password is 1"/>
+                <column name="date_of_birth" value="1977-03-24"/>
+                <column name="passport" value="2222 123456"/>
+                <column name="email" value="oleg@mail.ru"/>
+            </insert>
+            <insert tableName="users">
+                <column name="first_name" value="Елена"/>
+                <column name="last_name" value="Степанова"/>
+                <column name="password" value="$2a$12$Ebl3OB22F5A02R6ZrAXHmeNO4z/BF/X0YVtVWgzSNftlKodUqIMR6" remarks="password is 1"/>
+                <column name="date_of_birth" value="1983-04-15"/>
+                <column name="passport" value="3333 123456"/>
+                <column name="email" value="elena@mail.ru"/>
+            </insert>
+
+        </changeSet>
+
+</databaseChangeLog>

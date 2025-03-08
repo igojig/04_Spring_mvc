@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create_table_carts" author="Zhigachev">
+        <createTable tableName="carts">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="balance" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cart_status" type="varchar(20)">
+                <constraints nullable="false"  />
+            </column>
+            <column name="cart_type" type="varchar(20)">
+                <constraints nullable="false" />
+            </column>
+            <column name="bill_id" type="bigint">
+                <constraints foreignKeyName="carts_bill_id_bills_id" references="bills(id)" nullable="false"/>
+            </column>
+            <column name="payment_system" type="varchar(20)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add_constraint_cart_status" author="Zhigachev">
+        <sql>
+            ALTER TABLE carts ADD CONSTRAINT  cart_status_check CHECK(cart_status::text = ANY (ARRAY['ACTIVE'::character varying, 'BLOCKED'::character varying, 'CLOSED'::character varying]::text[]))
+        </sql>
+    </changeSet>
+
+    <changeSet id="add_constraint_cart_type" author="Zhigachev">
+        <sql>
+            ALTER TABLE carts ADD CONSTRAINT cart_type_check CHECK(cart_type::text = ANY (ARRAY['DEBIT'::character varying, 'CREDIT'::character varying]::text[]))
+        </sql>
+    </changeSet>
+
+    <changeSet id="add_constraint_payment_system_check" author="Zhigachev">
+        <sql>
+            ALTER TABLE carts ADD CONSTRAINT payment_system_check CHECK (payment_system::text = ANY (ARRAY['MIR'::character varying, 'UNION_PAY'::character varying, 'VISA'::character varying, 'MASTERCARD'::character varying]::text[]))
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

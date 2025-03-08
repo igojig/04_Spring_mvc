@@ -1,9 +1,9 @@
 server:
   port: ${SPRING_APP_PORT:8080}
 spring:
-  sql:
-    init:
-      mode: always
+#  sql:
+#    init:
+#      mode: always
   application:
     name: spring-mvc-homework
   datasource:
@@ -14,8 +14,11 @@ spring:
     open-in-view: false
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: validate
     properties:
       hibernate:
         format_sql: false
-    defer-datasource-initialization: true
+#    defer-datasource-initialization: true
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+#    enabled: false

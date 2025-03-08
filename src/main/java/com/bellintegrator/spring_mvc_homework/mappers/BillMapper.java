@@ -24,7 +24,7 @@ public abstract class BillMapper {
    @Mapping(target = "user", source = "userDto")
    public abstract Bill toEntity(BillDto billDto);
 
-   @Mapping(target = "type", constant = "DEPOSIT")
+   @Mapping(target = "billType", constant = "DEPOSIT")
    @Mapping(target = "user", expression = "java(this.getAuthUser())")
    public abstract Bill toEntityWithDepositTypeAndAuthUser(BillDto billDto);
 

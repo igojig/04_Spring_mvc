@@ -12,11 +12,11 @@ public interface BillService {
 
     public List<Bill> getAllByUserId(Long id);
 
-    public Optional<Bill> getBillByUserIdAndType(Long id, Bill.Type type);
+    public Optional<Bill> getBillByUserIdAndType(Long id, Bill.BillType billType);
 
     public Bill findById(Long billId);
 
-    public Bill createBill(Bill.Type type, Long balance, User user);
+    public Bill createBill(Bill.BillType billType, Long balance, User user);
 
     Bill addToBalance(Long id, Long amount);
 

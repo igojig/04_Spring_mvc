@@ -33,9 +33,9 @@ public class BillController {
     public String showAll(Model model) {
         log.info("Выводим список всех счетов");
         User authUser = userService.getAuthUser();
-        Map<Bill.Type, List<BillDto>> mapBillByType = billService.getAllByUserId(authUser.getId()).stream()
+        Map<Bill.BillType, List<BillDto>> mapBillByType = billService.getAllByUserId(authUser.getId()).stream()
                 .map(billMapper::toDto)
-                .collect(Collectors.groupingBy(BillDto::getType));
+                .collect(Collectors.groupingBy(BillDto::getBillType));
 
         model.addAttribute("bills", mapBillByType);
         return "bills/listAllBills";

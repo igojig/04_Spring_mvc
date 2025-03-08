@@ -53,7 +53,7 @@ public class CartController {
     public String openDebitCart(Model model) {
         log.info("Передаем View для открытия дебитовой карты");
         User user = userService.getAuthUser();
-        Optional<Bill> bill = billService.getBillByUserIdAndType(user.getId(), Bill.Type.DEBIT_CART);
+        Optional<Bill> bill = billService.getBillByUserIdAndType(user.getId(), Bill.BillType.DEBIT_CART);
         CartFormModel cartFormModel = new CartFormModel();
         if (bill.isEmpty()) {
             cartFormModel.setCreateBill(true);
@@ -76,7 +76,7 @@ public class CartController {
         }
 
         if (cartFormModel.isCreateBill()) {
-            Bill bill = billService.createBill(Bill.Type.DEBIT_CART, cartFormModel.getBalance(), userService.getAuthUser());
+            Bill bill = billService.createBill(Bill.BillType.DEBIT_CART, cartFormModel.getBalance(), userService.getAuthUser());
             cartService.createCart(Cart.CartStatus.ACTIVE, Cart.CartType.DEBIT, bill, cartFormModel.getPaymentSystem(), cartFormModel.getBalance());
         } else {
             Bill bill = billService.findById(cartFormModel.getBillId());
@@ -103,7 +103,7 @@ public class CartController {
         }
 
         User authUser = userService.getAuthUser();
-        Bill bill = billService.createBill(Bill.Type.CREDIT_CART, cartFormModel.getBalance(), authUser);
+        Bill bill = billService.createBill(Bill.BillType.CREDIT_CART, cartFormModel.getBalance(), authUser);
         Cart cart = cartService.createCart(Cart.CartStatus.ACTIVE, Cart.CartType.CREDIT, bill, cartFormModel.getPaymentSystem(), cartFormModel.getBalance());
         log.info("Сохранили кредитную карту с id: {}", cart.getId());
         return "redirect:/carts";

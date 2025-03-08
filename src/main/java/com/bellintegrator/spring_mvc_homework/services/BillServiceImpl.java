@@ -22,7 +22,7 @@ public class BillServiceImpl implements BillService {
     @Override
     @Transactional
     public Bill save(Bill bill) {
-        log.info("Создаем/обновляем счет типа {} для пользователя {}", bill.getType(), bill.getUser().getId());
+        log.info("Создаем/обновляем счет типа {} для пользователя {}", bill.getBillType(), bill.getUser().getId());
         return billRepository.save(bill);
     }
 
@@ -33,9 +33,9 @@ public class BillServiceImpl implements BillService {
     }
 
     @Override
-    public Optional<Bill> getBillByUserIdAndType(Long id, Bill.Type type) {
-        log.info("Получаем счета типа {} у пользователя с id {}", type, id);
-        return billRepository.getBillByUserIdAndType(id, type);
+    public Optional<Bill> getBillByUserIdAndType(Long id, Bill.BillType billType) {
+        log.info("Получаем счета типа {} у пользователя с id {}", billType, id);
+        return billRepository.getBillByUserIdAndType(id, billType);
     }
 
     @Override
@@ -46,10 +46,10 @@ public class BillServiceImpl implements BillService {
 
     @Override
     @Transactional
-    public Bill createBill(Bill.Type type, Long balance, User user) {
-        log.info("Создаем новый счет типа {} для пользователя {}", type, user.getId());
+    public Bill createBill(Bill.BillType billType, Long balance, User user) {
+        log.info("Создаем новый счет типа {} для пользователя {}", billType, user.getId());
         Bill bill = new Bill();
-        bill.setType(type);
+        bill.setBillType(billType);
         bill.setBalance(balance);
         bill.setUser(user);
         return billRepository.save(bill);

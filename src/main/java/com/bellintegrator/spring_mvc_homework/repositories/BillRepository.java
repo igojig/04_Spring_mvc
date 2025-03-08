@@ -15,6 +15,6 @@ public interface BillRepository extends JpaRepository<Bill, Long> {
     @Query("Select b from Bill b join b.user u where u.id= :userId")
     List<Bill> getAllByUserId(@Param("userId") Long userId);
 
-    @Query("Select b from Bill b join b.user u where u.id= :userId and b.type= :type")
-    Optional<Bill> getBillByUserIdAndType(@Param("userId") Long id, @Param("type") Bill.Type type);
+    @Query("Select b from Bill b join b.user u where u.id= :userId and b.billType= :billType")
+    Optional<Bill> getBillByUserIdAndType(@Param("userId") Long id, @Param("billType") Bill.BillType billType);
 }

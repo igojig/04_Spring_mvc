@@ -6,14 +6,14 @@
 </head>
 <body>
     <h3>Депозитные счета</h3>
-    <p th:if="${bills.get(T(com.bellintegrator.spring_mvc_homework.entities.Bill.Type).DEPOSIT)==null}" th:text="${'Депозитных счетов нет'}"></p>
-    <div th:if="${bills.get(T(com.bellintegrator.spring_mvc_homework.entities.Bill.Type).DEPOSIT)}">
+    <p th:if="${bills.get(T(com.bellintegrator.spring_mvc_homework.entities.Bill.BillType).DEPOSIT)==null}" th:text="${'Депозитных счетов нет'}"></p>
+    <div th:if="${bills.get(T(com.bellintegrator.spring_mvc_homework.entities.Bill.BillType).DEPOSIT)}">
         <table border="1">
             <th>№</th>
             <th>Баланс</th>
             <th>Операции</th>
             <tbody>
-                <tr th:each="bill: ${bills.get(T(com.bellintegrator.spring_mvc_homework.entities.Bill.Type).DEPOSIT) }">
+                <tr th:each="bill: ${bills.get(T(com.bellintegrator.spring_mvc_homework.entities.Bill.BillType).DEPOSIT) }">
                     <td th:text="${bill.id}"></td>
                     <td th:text="${#numbers.formatInteger(bill.balance,3,'WHITESPACE')}"></td>
                     <td>
@@ -42,13 +42,13 @@
     </div>
 
     <h3>Дебетовые карточные счета</h3>
-    <p th:if="${bills.get(T(com.bellintegrator.spring_mvc_homework.entities.Bill.Type).DEBIT_CART)==null}" th:text="${'Дебетовых карточных счетов нет'}"></p>
-    <div th:if="${bills.get(T(com.bellintegrator.spring_mvc_homework.entities.Bill.Type).DEBIT_CART)}">
+    <p th:if="${bills.get(T(com.bellintegrator.spring_mvc_homework.entities.Bill.BillType).DEBIT_CART)==null}" th:text="${'Дебетовых карточных счетов нет'}"></p>
+    <div th:if="${bills.get(T(com.bellintegrator.spring_mvc_homework.entities.Bill.BillType).DEBIT_CART)}">
         <table border="1">
             <th>№</th>
             <th>Баланс</th>
             <tbody>
-            <tr th:each="bill: ${bills.get(T(com.bellintegrator.spring_mvc_homework.entities.Bill.Type).DEBIT_CART) }">
+            <tr th:each="bill: ${bills.get(T(com.bellintegrator.spring_mvc_homework.entities.Bill.BillType).DEBIT_CART) }">
                 <td th:text="${bill.id}"></td>
                 <td th:text="${#numbers.formatInteger(bill.balance,3,'WHITESPACE')}"></td>
 
@@ -58,13 +58,13 @@
     </div>
 
     <h3>Кредитные карточные счета</h3>
-    <p th:if="${bills.get(T(com.bellintegrator.spring_mvc_homework.entities.Bill.Type).CREDIT_CART)==null}" th:text="${'Кредитных карточных счетов нет'}"></p>
-    <div th:if="${bills.get(T(com.bellintegrator.spring_mvc_homework.entities.Bill.Type).CREDIT_CART)}">
+    <p th:if="${bills.get(T(com.bellintegrator.spring_mvc_homework.entities.Bill.BillType).CREDIT_CART)==null}" th:text="${'Кредитных карточных счетов нет'}"></p>
+    <div th:if="${bills.get(T(com.bellintegrator.spring_mvc_homework.entities.Bill.BillType).CREDIT_CART)}">
         <table border="1">
             <th>№</th>
             <th>Баланс</th>
             <tbody>
-            <tr th:each="bill: ${bills.get(T(com.bellintegrator.spring_mvc_homework.entities.Bill.Type).CREDIT_CART) }">
+            <tr th:each="bill: ${bills.get(T(com.bellintegrator.spring_mvc_homework.entities.Bill.BillType).CREDIT_CART) }">
                 <td th:text="${bill.id}"></td>
                 <td th:text="${#numbers.formatInteger(bill.balance,3,'WHITESPACE')}"></td>
 
