@@ -7,7 +7,7 @@ COPY src /build/src/
 WORKDIR /build/
 RUN mvn package -DskipTests
 
-FROM openjdk:17-alpine
+FROM bellsoft/liberica-openjdk-alpine:17.0.14-10
 
 WORKDIR /app
 
