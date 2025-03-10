@@ -21,4 +21,6 @@ spring:
 #    defer-datasource-initialization: true
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.xml
+    default-schema: banking
+    liquibase-schema: liquibase
 #    enabled: false

@@ -9,12 +9,12 @@ services:
     image: mvc_thymeleaf_backend
     env_file: .env
     ports:
-      - ${HOST_PORT}:${APP_PORT}
+      - ${HOST_PORT}:${BACKEND_PORT}
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:${POSTGRES_PORT}/${POSTGRES_DB}
       - SPRING_DATASOURCE_USERNAME=${DATASOURCE_USERNAME}
       - SPRING_DATASOURCE_PASSWORD=${DATASOURCE_PASSWORD}
-      - SPRING_APP_PORT=${APP_PORT}
+      - SPRING_APP_PORT=${BACKEND_PORT}
     networks:
       - mvc-network
     depends_on:
